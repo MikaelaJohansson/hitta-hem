@@ -1,0 +1,16 @@
+<p>Antal hundar som söker nytt hem: {{ dogService.dogs().length }}</p>
+
+<main class="container">
+  <section class="row">
+    <div *ngFor="let dog of dogService.dogs()" class="col-4">
+      <a [routerLink] = "['/adoption-details', dog.id]">
+        <img [src]="'http://localhost:5171' + dog.imageUrl" alt="{{ dog.name }}" class="img-fluid" style="max-width: 200px;">
+        <h1>{{ dog.name }} </h1>
+        <h3><br> {{"Ålder: "+ dog.age + "år"}} <br> {{"Kön: " + dog.sex}} <br> {{"Ras: " + dog.breed}} </h3>
+        <a [routerLink]="['/adoption-details', dog.id]">
+          Läs mer om {{ dog.name }} &rightarrow;
+        </a>
+      </a>  
+    </div>
+  </section>
+</main>
