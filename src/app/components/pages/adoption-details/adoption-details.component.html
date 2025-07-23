@@ -2,9 +2,15 @@
 <main class="container">
     <section class="row">
         <div *ngIf="dog" class="col-12">
-            <h2>{{ dog.name }}</h2>
-            <img [src]="'http://localhost:5171' + dog.imageUrl" alt="{{ dog.name }}"  style="max-width: 200px">
-            <p>Ålder: {{ dog.age }} <br> Ras: {{ dog.breed }} <br> Kön: {{dog.sex}}</p>
+            <img 
+                [src]="dog.imageUrl.startsWith('data') ? dog.imageUrl : 'http://localhost:5171' + dog.imageUrl" 
+                alt="{{ dog.name }}" 
+                class="img-fluid" 
+                style="max-width: 200px;"
+            >
+
+            <h2>{{dog.name }}</h2>
+            <p>Ålder: {{ dog.age }} år <br> Ras: {{ dog.breed }} <br> Kön: {{dog.sex}}</p>
             <p>Beskrivning: <br> {{dog.description}}</p>
         </div>
     </section>

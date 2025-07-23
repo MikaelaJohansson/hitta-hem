@@ -4,7 +4,12 @@
   <section class="row">
     <div *ngFor="let dog of dogService.dogs()" class="col-4">
       <a [routerLink] = "['/adoption-details', dog.id]">
-        <img [src]="'http://localhost:5171' + dog.imageUrl" alt="{{ dog.name }}" class="img-fluid" style="max-width: 200px;">
+        <img 
+          [src]="dog.imageUrl.startsWith('data') ? dog.imageUrl : 'http://localhost:5171' + dog.imageUrl" 
+          alt="{{ dog.name }}" 
+          class="img-fluid" 
+          style="max-width: 200px;"
+        >
         <h1>{{ dog.name }} </h1>
         <h3><br> {{"Ålder: "+ dog.age + "år"}} <br> {{"Kön: " + dog.sex}} <br> {{"Ras: " + dog.breed}} </h3>
         <a [routerLink]="['/adoption-details', dog.id]">

@@ -1,0 +1,67 @@
+<main class="container">
+  <section class="row">
+    <div class="col-6">
+      <p>
+        <strong>Att hitta ett nytt hem för din hund</strong><br>
+        Livet blir inte alltid som man tänkt sig. Ibland uppstår situationer där det inte längre är möjligt att behålla sin hund. 
+        Det är ofta ett tungt beslut, för relationen till en hund är något djupt och innerligt. Vi vet hur svårt det kan vara, och vi gör vårt bästa för att finnas där när det behövs, om vi har utrymme.
+        <br><br>
+        <strong>Om du söker hjälp med omplacering</strong><br>
+        Innan du kontaktar oss ber vi dig att först undersöka andra vägar. Du kan börja med att prata med hundens uppfödare, eftersom många tar ansvar för de hundar de fött upp. 
+        Om hunden kommer från en organisation bör du vända dig dit i första hand. Du kan även kontakta andra omplaceringsföreningar eller höra efter i din närhet om någon kan hjälpa.
+        <br><br>
+        <strong>Vi bryr oss om varje individ</strong><br>
+        Alla hundar är olika, och vi möter varje enskild hund med respekt för dess bakgrund och behov. 
+        En del behöver lugn och ro, andra behöver stöd och trygghet, och vissa behöver en helt ny start. 
+        Vi utgår alltid från både den fysiska och psykiska hälsan när vi planerar nästa steg för varje hund.
+      </p>
+    </div>
+  </section>
+
+  <section class="row mt-4">
+    <div class="col-4">
+      <form [formGroup]="dogForm" (submit)="onSubmit($event)" enctype="multipart/form-data">
+        <input type="text" formControlName="name" placeholder="Namn" required />
+        <input type="number" formControlName="age" placeholder="Ålder" required />
+        <input type="text" formControlName="sex" placeholder="Kön" required />
+        <input type="text" formControlName="breed" placeholder="Ras" required />
+        <textarea formControlName="description" placeholder="Beskrivning"></textarea>
+
+        <label for="imageFile">Välj bild:</label>
+        <input
+          type="file"
+          name="imageFile"
+          accept="image/jpeg,image/png"
+          (change)="onFileSelected($event)"
+          [required]="!editingDogId"
+        />
+
+        <div *ngIf="previewUrl" style="margin-top: 10px;">
+          <p>Förhandsvisning:</p>
+          <img [src]="previewUrl" alt="Vald bild" style="max-width: 200px;" />
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-2">
+          {{ editingDogId ? 'Spara ändringar' : 'Lägg till hund' }}
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <section class="row">
+    <div *ngIf="newlyAddedDog" class="card mt-4 p-3 border">
+      <h3>Ny hund tillagd</h3>
+      <img [src]="newlyAddedDog.imageUrl" alt="bild" style="max-width: 200px;" />
+      <p><strong>Namn:</strong> {{ newlyAddedDog.name }}</p>
+      <p><strong>Ålder:</strong> {{ newlyAddedDog.age }}</p>
+      <p><strong>Kön:</strong> {{ newlyAddedDog.sex }}</p>
+      <p><strong>Ras:</strong> {{ newlyAddedDog.breed }}</p>
+      <p><strong>Beskrivning:</strong> {{ newlyAddedDog.description }}</p>
+
+      <button (click)="startEdit(newlyAddedDog)" class="btn btn-warning">Redigera</button>
+      <button (click)="deleteDog(newlyAddedDog.id)" class="btn btn-danger">Radera</button>
+    </div>
+  </section>
+
+
+</main>

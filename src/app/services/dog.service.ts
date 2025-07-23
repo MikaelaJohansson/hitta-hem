@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { signal } from '@angular/core';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs';
+
 
 export interface Dog {
   id: number;
@@ -32,6 +35,15 @@ export class DogService {
   getDogFromApiById(id:number){
     return this.http.get<Dog>(`http://localhost:5171/api/dogs/${id}`);
   }
+
+  addDog(dog: Dog): Observable<Dog> {
+    return this.http.post<Dog>('http://localhost:5171/api/dogs', dog).pipe(
+      tap((newDog) => {
+        this.dogs.update((prevDogs) => [...prevDogs, newDog]);
+      })
+    );
+  }
+
 
 
 }
