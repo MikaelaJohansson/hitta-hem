@@ -1,0 +1,16 @@
+.dog-card {
+  background-color: white;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  border-radius: 1rem;
+  text-align: center;
+  height: 100%;
+}
+
+.dog-card:hover {
+  background-color: #f6fbfd;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  transform: scale(1.03);
+  cursor: pointer;
+}
+
+

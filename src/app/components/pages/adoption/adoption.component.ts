@@ -7,7 +7,8 @@ import { RouterLink } from '@angular/router';
   selector: 'app-adoption',
   standalone: true,
   imports: [NgFor,RouterLink],
-  templateUrl: './adoption.component.html'
+  templateUrl: './adoption.component.html',
+  styleUrl: './adoption.component.scss'
 })
 export class AdoptionComponent {
   constructor(public dogService: DogService) {
