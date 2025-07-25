@@ -17,6 +17,7 @@ export class RehomingComponent {
   newlyAddedDog: Dog | null = null;
   editingDogId: number | null = null;
   selectedFile: File | null = null; 
+  isEditing:boolean=false;
 
   constructor(
     private fb: FormBuilder,
@@ -93,7 +94,6 @@ export class RehomingComponent {
           this.newlyAddedDog = null;
         }
 
-        // 🧠 Uppdatera listan
         this.dogService.getDogsFromApi();
       },
       error: err => console.error('Kunde inte radera:', err)
@@ -112,6 +112,15 @@ export class RehomingComponent {
 
     this.previewUrl = dog.imageUrl;
     this.selectedFile = null; 
+    this.isEditing = true; 
   }
+
+  cancelEdit() {
+    this.editingDogId = null;
+    this.isEditing = false;
+    this.dogForm.reset();
+    this.previewUrl = null;
+  }
+
 }
 

@@ -1,4 +1,4 @@
-<main class="container">
+<section class="container">
   <section class="row">
     <div class="col-6">
       <p>
@@ -20,6 +20,7 @@
 
   <section class="row mt-4">
     <div class="col-4">
+      
       <form [formGroup]="dogForm" (submit)="onSubmit($event)" enctype="multipart/form-data">
         <input type="text" formControlName="name" placeholder="Namn" required />
         <input type="number" formControlName="age" placeholder="Ålder" required />
@@ -44,24 +45,17 @@
         <button type="submit" class="btn btn-primary mt-2">
           {{ editingDogId ? 'Spara ändringar' : 'Lägg till hund' }}
         </button>
+
+        <button *ngIf="isEditing" (click)="cancelEdit()" class="btn btn-secondary">Avbryt</button>       
       </form>
+
+      <div *ngIf="newlyAddedDog && !isEditing">
+        <h3>Ny hund tillagd</h3>
+        <img [src]="newlyAddedDog.imageUrl" alt="bild" style="max-width: 200px;" />
+        <button (click)="startEdit(newlyAddedDog)" class="btn btn-warning">Redigera</button>
+        <button (click)="deleteDog(newlyAddedDog.id)" class="btn btn-danger">Radera</button>
+      </div>
+
     </div>
   </section>
-
-  <section class="row">
-    <div *ngIf="newlyAddedDog" class="card mt-4 p-3 border">
-      <h3>Ny hund tillagd</h3>
-      <img [src]="newlyAddedDog.imageUrl" alt="bild" style="max-width: 200px;" />
-      <p><strong>Namn:</strong> {{ newlyAddedDog.name }}</p>
-      <p><strong>Ålder:</strong> {{ newlyAddedDog.age }}</p>
-      <p><strong>Kön:</strong> {{ newlyAddedDog.sex }}</p>
-      <p><strong>Ras:</strong> {{ newlyAddedDog.breed }}</p>
-      <p><strong>Beskrivning:</strong> {{ newlyAddedDog.description }}</p>
-
-      <button (click)="startEdit(newlyAddedDog)" class="btn btn-warning">Redigera</button>
-      <button (click)="deleteDog(newlyAddedDog.id)" class="btn btn-danger">Radera</button>
-    </div>
-  </section>
-
-
-</main>
+</section>
