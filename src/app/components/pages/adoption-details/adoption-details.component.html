@@ -1,17 +1,61 @@
 
-<section class="container">
-    <section class="row">
-        <div *ngIf="dog" class="col-12">
-            <img 
-                [src]="dog.imageUrl.startsWith('data') ? dog.imageUrl : 'http://localhost:5171' + dog.imageUrl" 
-                alt="{{ dog.name }}" 
-                class="img-fluid" 
-                style="max-width: 200px;"
-            >
+<section class="container-fluid p-0">
 
-            <h2>{{dog.name }}</h2>
-            <p>Ålder: {{ dog.age }} år <br> Ras: {{ dog.breed }} <br> Kön: {{dog.sex}}</p>
-            <p>Beskrivning: <br> {{dog.description}}</p>
+    <section class="container-fluid mt-5">
+        <div *ngIf="dog">
+            <div class="row align-items-start detailsContainer ">
+
+                <div class="col-12 col-md-6 text-center mt-4">
+                    <img 
+                    [src]="dog.imageUrl.startsWith('data') ? dog.imageUrl : 'http://localhost:5171' + dog.imageUrl" 
+                    alt="{{ dog.name }}" 
+                    class="img-fluid rounded-4 mb-3 detailsImg"
+                    style="max-width: 300px;"
+                    >
+                </div>
+
+                <div class="col-12 col-md-6 text-center fs-4">
+                    <div class="text-center my-4">
+                    <span [class.text-danger]="hasVoted" style="font-size: 3rem;">❤️</span>
+                    <div>{{ interestCount }} intresserade</div>
+                    </div>
+                    <h2>{{ dog.name }}</h2>
+                    <p>Ålder: {{ dog.age }} år <br> Ras: {{ dog.breed }} <br> Kön: {{ dog.sex }}</p>
+                   
+                </div>                
+            </div>
+            <p class="mt-5 p-5"><strong class="fs-3">Beskrivning:</strong><br> {{ dog.description }}</p>
+        </div>        
+    </section>
+
+
+    <section class="row text-center mt-5 mb-5 detailsContainer p-4">
+        <h2>Intresseanmälan:</h2>
+       <form (ngSubmit)="submitInterest()" #form="ngForm">
+        <input
+            type="text"
+            placeholder="Förnamn"
+            name="firstName"
+            [(ngModel)]="firstName"
+            required
+        />
+        <br /><br />
+
+        <input
+            type="text"
+            placeholder="Efternamn"
+            name="lastName"
+            [(ngModel)]="lastName"
+            required
+        />
+        <br /><br />
+
+        <button type="submit" class="btn btn-success">Skicka intresse</button>
+        </form>
+
+        <div *ngIf="confirmationMessage" class="alert alert-success mt-3">
+        {{ confirmationMessage }}
         </div>
     </section>
+
 </section>

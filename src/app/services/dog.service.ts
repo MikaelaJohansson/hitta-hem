@@ -13,6 +13,7 @@ export interface Dog {
   breed: string;
   description:string;
   imageUrl: string;
+  interestCount?: number; 
 }
 
 @Injectable({
@@ -36,13 +37,13 @@ export class DogService {
     return this.http.get<Dog>(`http://localhost:5171/api/dogs/${id}`);
   }
 
-  addDog(dog: Dog): Observable<Dog> {
-    return this.http.post<Dog>('http://localhost:5171/api/dogs', dog).pipe(
-      tap((newDog) => {
-        this.dogs.update((prevDogs) => [...prevDogs, newDog]);
-      })
-    );
-  }
+  // addDog(dog: Dog): Observable<Dog> {
+  //   return this.http.post<Dog>('http://localhost:5171/api/dogs', dog).pipe(
+  //     tap((newDog) => {
+  //       this.dogs.update((prevDogs) => [...prevDogs, newDog]);
+  //     })
+  //   );
+  // }
 
 
 
