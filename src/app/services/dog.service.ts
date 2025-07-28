@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { signal } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs';
-
+import { environment } from '../../environments/environment';
 
 export interface Dog {
   id: number;
@@ -25,7 +25,7 @@ export class DogService {
   constructor(private http: HttpClient) { }
 
   getDogsFromApi(){
-    this.http.get<Dog[]>('http://localhost:5171/api/dogs')
+    this.http.get<Dog[]>(`${environment.apiUrl}/api/dogs`)
     .subscribe(dogs => {
       console.log('Hämtade från backend:', dogs);
       this.dogs.set(dogs);
@@ -34,17 +34,8 @@ export class DogService {
   }
 
   getDogFromApiById(id:number){
-    return this.http.get<Dog>(`http://localhost:5171/api/dogs/${id}`);
+    return this.http.get<Dog>(`${environment.apiUrl}/api/dogs/${id}`);
   }
-
-  // addDog(dog: Dog): Observable<Dog> {
-  //   return this.http.post<Dog>('http://localhost:5171/api/dogs', dog).pipe(
-  //     tap((newDog) => {
-  //       this.dogs.update((prevDogs) => [...prevDogs, newDog]);
-  //     })
-  //   );
-  // }
-
 
 
 }
