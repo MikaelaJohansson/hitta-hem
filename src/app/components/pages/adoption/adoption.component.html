@@ -1,6 +1,6 @@
 <section class="container">
   <p class="text-center mt-4">
-    Antal hundar som söker nytt hem: {{ dogService.dogs().length }}
+    Antal hundar som söker nytt hem: {{ dogService.dogs().length }} själar
   </p>
 
   <div class="row dogs-wrapper">
@@ -12,13 +12,13 @@
             alt="{{ dog.name }}" 
             class="img-fluid rounded-3 mb-3"
           >
-          <h2>{{ dog.name }}</h2>
-          <p>
-            Ålder: {{ dog.age }} år<br>
-            Kön: {{ dog.sex }}<br>
-            Ras: {{ dog.breed }}
+          <h2 class="fs-1 text-decoration-underline">{{ dog.name }}</h2>
+          <p class="text-start mx-4">
+            <strong>Ålder:</strong>&nbsp; {{ dog.age }} år<br>
+            <strong>Kön: </strong>&nbsp;  {{ dog.sex }}<br>
+            <strong>Ras:</strong>&nbsp;  {{ dog.breed }}
           </p>
-          <p><strong>Läs mer om {{ dog.name }} →</strong></p>
+          <p class="adoption-card" ><strong>Läs mer om {{ dog.name }} →</strong></p>
         </a>
       </div>
     </div>

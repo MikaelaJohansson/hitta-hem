@@ -7,10 +7,16 @@
 }
 
 .dog-card:hover {
-  background-color: #f6fbfd;
+  background-color: #f2f9fc;
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
   transform: scale(1.03);
   cursor: pointer;
 }
+
+.dog-card a {
+  text-decoration: none;
+  color: inherit; 
+}
+
 
 

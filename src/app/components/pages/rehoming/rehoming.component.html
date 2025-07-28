@@ -1,6 +1,12 @@
-<section class="container">
-  <section class="row">
-    <div class="col-6">
+<section class="container mt-4">
+
+  <div class="dogRehomingWrapper mb-5 mt-5">
+    <img src="/dog-rehoming.jpg" alt="Omplacering av hund" class="dogRehomingImg">
+  </div>
+
+  <div class="row rehomingContainer">
+
+    <div class="col-12 col-md-6 mb-5 mt-4">
       <p>
         <strong>Att hitta ett nytt hem för din hund</strong><br>
         Livet blir inte alltid som man tänkt sig. Ibland uppstår situationer där det inte längre är möjligt att behålla sin hund. 
@@ -16,46 +22,51 @@
         Vi utgår alltid från både den fysiska och psykiska hälsan när vi planerar nästa steg för varje hund.
       </p>
     </div>
-  </section>
 
-  <section class="row mt-4">
-    <div class="col-4">
-      
+    <div class="col-12 col-md-6 mt-4">
       <form [formGroup]="dogForm" (submit)="onSubmit($event)" enctype="multipart/form-data">
-        <input type="text" formControlName="name" placeholder="Namn" required />
-        <input type="number" formControlName="age" placeholder="Ålder" required />
-        <input type="text" formControlName="sex" placeholder="Kön" required />
-        <input type="text" formControlName="breed" placeholder="Ras" required />
-        <textarea formControlName="description" placeholder="Beskrivning"></textarea>
+        <input type="text" formControlName="name" placeholder="Namn" required class="form-control my-2" />
+        <input type="number" formControlName="age" placeholder="Ålder" required class="form-control my-2" />
+        <input type="text" formControlName="sex" placeholder="Kön" required class="form-control my-2" />
+        <input type="text" formControlName="breed" placeholder="Ras" required class="form-control my-2" />
+        <textarea formControlName="description" placeholder="Beskrivning" class="form-control my-2"></textarea>
 
-        <label for="imageFile">Välj bild:</label>
+        <label for="imageFile" class="form-label mt-2">Välj bild:</label>
         <input
           type="file"
           name="imageFile"
           accept="image/jpeg,image/png"
           (change)="onFileSelected($event)"
           [required]="!editingDogId"
+          class="form-control"
         />
 
-        <div *ngIf="previewUrl" style="margin-top: 10px;">
+        <small class="form-text text-muted">
+          Endast JPG och PNG tillåts. Maxstorlek: 2 MB.
+        </small>
+        <br>
+        <div *ngIf="previewUrl" class="mt-3">
           <p>Förhandsvisning:</p>
           <img [src]="previewUrl" alt="Vald bild" style="max-width: 200px;" />
         </div>
 
-        <button type="submit" class="btn btn-primary mt-2">
+        <button type="submit" class="btn btn-primary mt-3 mb-5">
           {{ editingDogId ? 'Spara ändringar' : 'Lägg till hund' }}
         </button>
 
-        <button *ngIf="isEditing" (click)="cancelEdit()" class="btn btn-secondary">Avbryt</button>       
+        <button *ngIf="isEditing" (click)="cancelEdit()" class="btn btn-secondary mt-3">Avbryt</button>
       </form>
 
-      <div *ngIf="newlyAddedDog && !isEditing">
+      <div *ngIf="newlyAddedDog && !isEditing" class="mt-4">
         <h3>Ny hund tillagd</h3>
         <img [src]="newlyAddedDog.imageUrl" alt="bild" style="max-width: 200px;" />
-        <button (click)="startEdit(newlyAddedDog)" class="btn btn-warning">Redigera</button>
-        <button (click)="deleteDog(newlyAddedDog.id)" class="btn btn-danger">Radera</button>
+        <div class="mt-2">
+          <button (click)="startEdit(newlyAddedDog)" class="btn btn-warning me-2">Redigera</button>
+          <button (click)="deleteDog(newlyAddedDog.id)" class="btn btn-danger">Radera</button>
+        </div>
       </div>
-
     </div>
-  </section>
+
+  </div>
 </section>
+

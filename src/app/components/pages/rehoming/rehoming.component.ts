@@ -26,7 +26,7 @@ export class RehomingComponent {
   ) {
     this.dogForm = this.fb.group({
       name: ['', Validators.required],
-      age: [0, Validators.required],
+      age: ['', Validators.required],
       sex: ['', Validators.required],
       breed: ['', Validators.required],
       description: ['']
@@ -36,15 +36,33 @@ export class RehomingComponent {
   onFileSelected(event: Event) {
     const fileInput = event.target as HTMLInputElement;
     if (fileInput.files && fileInput.files.length > 0) {
-      this.selectedFile = fileInput.files[0];
+      const file = fileInput.files[0];
+
+      const allowedTypes = ['image/jpeg', 'image/png'];
+      const maxSize = 2 * 1024 * 1024; // 2MB
+
+      if (!allowedTypes.includes(file.type)) {
+        alert('Endast JPG och PNG tillåts.');
+        fileInput.value = ''; 
+        return;
+      }
+
+      if (file.size > maxSize) {
+        alert('Filen är för stor. Maxstorlek är 2 MB.');
+        fileInput.value = ''; 
+        return;
+      }
+
+      this.selectedFile = file;
 
       const reader = new FileReader();
       reader.onload = () => {
         this.previewUrl = reader.result as string;
       };
-      reader.readAsDataURL(this.selectedFile);
+      reader.readAsDataURL(file);
     }
   }
+
 
   onSubmit(event: Event) {
     event.preventDefault();

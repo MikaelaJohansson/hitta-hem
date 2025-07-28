@@ -23,6 +23,7 @@ export class AdoptionDetailsComponent {
 
   firstName = '';
   lastName = '';
+  email = "";
   confirmationMessage = '';
 
 
@@ -49,8 +50,8 @@ export class AdoptionDetailsComponent {
       this.hasVoted = true;
       this.firstName = '';
       this.lastName = '';
-
-      this.confirmationMessage = "Intresseanmälan inskickad!"
+      this.email = "";
+      this.confirmationMessage = "Intresseanmälan inskickad!";
 
       if (typeof sessionStorage !== 'undefined') {
         sessionStorage.setItem(`interest_${this.dog!.id}`, 'true');

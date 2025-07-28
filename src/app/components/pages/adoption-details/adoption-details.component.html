@@ -31,31 +31,40 @@
 
     <section class="row text-center mt-5 mb-5 detailsContainer p-4">
         <h2>Intresseanmälan:</h2>
-       <form (ngSubmit)="submitInterest()" #form="ngForm">
-        <input
-            type="text"
-            placeholder="Förnamn"
-            name="firstName"
-            [(ngModel)]="firstName"
-            required
-        />
-        <br /><br />
-
-        <input
-            type="text"
-            placeholder="Efternamn"
-            name="lastName"
-            [(ngModel)]="lastName"
-            required
-        />
-        <br /><br />
-
-        <button type="submit" class="btn btn-success">Skicka intresse</button>
+        <form (ngSubmit)="submitInterest()" #form="ngForm">
+            <input
+                type="text"
+                placeholder="Förnamn"
+                name="firstName"
+                [(ngModel)]="firstName"
+                required
+            />
+            <br><br>
+            <input
+                type="text"
+                placeholder="Efternamn"
+                name="lastName"
+                [(ngModel)]="lastName"
+                required
+            />
+            <br><br>
+            <input
+                type="email"
+                placeholder="E-mail"
+                name="email"
+                [(ngModel)]="email"
+                required
+            />
+            <br><br>
+            <button type="submit" class="btn btn-success">Skicka intresse</button>
         </form>
 
         <div *ngIf="confirmationMessage" class="alert alert-success mt-3">
-        {{ confirmationMessage }}
+         {{ confirmationMessage }}
         </div>
+
+       
+
     </section>
 
 </section>
