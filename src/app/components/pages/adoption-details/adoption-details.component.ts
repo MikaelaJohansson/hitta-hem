@@ -4,6 +4,7 @@ import { DogService, Dog } from '../../../services/dog.service';
 import { NgIf} from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-adoption-details',
@@ -44,7 +45,7 @@ export class AdoptionDetailsComponent {
   submitInterest() {
     if (!this.dog || this.hasVoted) return;
 
-    this.http.post<number>(`http://localhost:5171/api/dogs/interest/${this.dog!.id}`, {})
+    this.http.post<number>(`${environment.apiUrl}/api/dogs/interest/${this.dog!.id}`, {})
     .subscribe(count => {
       this.interestCount = count;
       this.hasVoted = true;
