@@ -7,7 +7,7 @@
 
                 <div class="col-12 col-md-6 text-center mt-4">
                     <img 
-                    [src]="dog.imageUrl.startsWith('data') ? dog.imageUrl : 'http://localhost:5171' + dog.imageUrl" 
+                    [src]="dog.imageUrl.startsWith('data') ? dog.imageUrl : environment.apiUrl + dog.imageUrl"
                     alt="{{ dog.name }}" 
                     class="img-fluid rounded-4 mb-3 detailsImg"
                     style="max-width: 300px;"
@@ -61,10 +61,6 @@
 
         <div *ngIf="confirmationMessage" class="alert alert-success mt-3">
          {{ confirmationMessage }}
-        </div>
-
-       
-
+        </div>       
     </section>
-
 </section>

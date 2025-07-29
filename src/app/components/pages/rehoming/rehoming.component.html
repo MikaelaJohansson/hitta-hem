@@ -50,11 +50,11 @@
           <img [src]="previewUrl" alt="Vald bild" style="max-width: 200px;" />
         </div>
 
-        <button type="submit" class="btn btn-primary mt-3 mb-5">
+        <button type="submit" class="btn btn-primary mt-5 mb-5">
           {{ editingDogId ? 'Spara ändringar' : 'Lägg till hund' }}
         </button>
 
-        <button *ngIf="isEditing" (click)="cancelEdit()" class="btn btn-secondary mt-3">Avbryt</button>
+        <button *ngIf="isEditing" (click)="cancelEdit()" class="btn btn-secondary">Avbryt</button>
       </form>
 
       <div *ngIf="newlyAddedDog && !isEditing" class="mt-4">

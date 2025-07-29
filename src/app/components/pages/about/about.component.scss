@@ -1,10 +1,8 @@
 .aboutImg{
     border-radius:5%;
-   
+    width: 450px;
 }
-.aboutHeader{
-    font-size: 4rem;
-}
+
 .aboutBackground{
     background-color: #f6fbfd;
 }
@@ -12,4 +10,16 @@
 ul {
   padding-left: 1rem;
   line-height: 1.8;
+}
+
+@media (min-width: 1200px) {
+  .custom-display {
+    font-size: 4rem; 
+  }
+}
+
+@media (min-width: 1600px) {
+  .custom-display {
+    font-size: 5rem; 
+  }
 }

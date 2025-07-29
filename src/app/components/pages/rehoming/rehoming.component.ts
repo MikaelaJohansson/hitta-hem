@@ -68,14 +68,22 @@ export class RehomingComponent {
     event.preventDefault();
 
     const formData = new FormData();
-    formData.append('name', this.dogForm.value.name);
-    formData.append('age', this.dogForm.value.age.toString());
-    formData.append('sex', this.dogForm.value.sex);
-    formData.append('breed', this.dogForm.value.breed);
-    formData.append('description', this.dogForm.value.description);
+    formData.append('name', this.dogForm.value.name || '');
+    formData.append('age', this.dogForm.value.age?.toString() ?? '0');
+    formData.append('sex', this.dogForm.value.sex || '');
+    formData.append('breed', this.dogForm.value.breed || '');
+    formData.append('description', this.dogForm.value.description || '');
 
-    if (this.selectedFile) {
-      formData.append('imageFile', this.selectedFile);
+    if (!this.selectedFile) {
+      alert('Vänligen välj en bild.');
+      return;
+    }
+
+    formData.append('imageFile', this.selectedFile);
+
+    console.log('FormData som skickas:');
+    for (const [key, value] of formData.entries()) {
+      console.log(`${key}:`, value);
     }
 
     let url = `${environment.apiUrl}/api/dogs/upload`; 
@@ -90,7 +98,6 @@ export class RehomingComponent {
       next: (response) => {
         alert(this.editingDogId ? 'Hund uppdaterad!' : 'Hund tillagd!');
         this.newlyAddedDog = response;
-
         this.previewUrl = null;
         this.selectedFile = null;
         this.dogForm.reset();
@@ -98,10 +105,11 @@ export class RehomingComponent {
       },
       error: err => {
         console.error('Fel:', err);
-        alert('Något gick fel');
+        alert('Något gick fel vid uppladdningen.');
       }
     });
   }
+
 
   deleteDog(id: number) {
     this.http.delete(`${environment.apiUrl}/api/dogs/${id}`).subscribe({ 

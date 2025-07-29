@@ -26,6 +26,7 @@ export class AdoptionDetailsComponent {
   lastName = '';
   email = "";
   confirmationMessage = '';
+   environment = environment;
 
 
   constructor() {
