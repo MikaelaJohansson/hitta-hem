@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     permissions:
       contents: read #This is required for actions/checkout
 
@@ -23,12 +23,12 @@ jobs:
         with:
           node-version: '20.x'
 
-      - name: npm install and build
+      - name: npm install, build, and test
         run: |
           npm install
           npm run build --if-present
-
-
+          npm run test --if-present
+      
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
@@ -51,13 +51,13 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_5ED46EF5A8AA481FA47DF6F42B188248 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_AEE77ECEC88D485C9C1B5F368F0CF431 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_6F09A13E6CA04C64A1B38A5F6EC87F82 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_41C35822562540C7AFDFD362A4EE5326 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_0B8A600160DA409394B1E659F411EAF8 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_8D389F4462E043159E6BEAB2301B4881 }}
 
       - name: 'Deploy to Azure Web App'
-        id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
+        id: deploy-to-webapp
         with:
           app-name: 'hitta-hem-frontend'
           slot-name: 'Production'
