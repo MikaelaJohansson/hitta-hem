@@ -3,6 +3,7 @@ import { Dog, DogService } from '../../../services/dog.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../../environments/environment'
 
 @Component({
   selector: 'app-rehoming',
@@ -63,7 +64,6 @@ export class RehomingComponent {
     }
   }
 
-
   onSubmit(event: Event) {
     event.preventDefault();
 
@@ -78,11 +78,11 @@ export class RehomingComponent {
       formData.append('imageFile', this.selectedFile);
     }
 
-    let url = 'http://localhost:5171/api/dogs/upload';
+    let url = `${environment.apiUrl}/api/dogs/upload`; 
     let method = 'post';
 
     if (this.editingDogId !== null) {
-      url = `http://localhost:5171/api/dogs/${this.editingDogId}`;
+      url = `${environment.apiUrl}/api/dogs/${this.editingDogId}`; 
       method = 'put';
     }
 
@@ -101,11 +101,10 @@ export class RehomingComponent {
         alert('Något gick fel');
       }
     });
-
   }
 
   deleteDog(id: number) {
-    this.http.delete(`http://localhost:5171/api/dogs/${id}`).subscribe({
+    this.http.delete(`${environment.apiUrl}/api/dogs/${id}`).subscribe({ 
       next: () => {
         alert('Hunden raderad!');
         if (this.newlyAddedDog?.id === id) {
@@ -139,6 +138,4 @@ export class RehomingComponent {
     this.dogForm.reset();
     this.previewUrl = null;
   }
-
 }
-
