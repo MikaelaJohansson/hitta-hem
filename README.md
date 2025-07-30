@@ -58,7 +58,7 @@ This frontend communicates with a backend REST API using environment-based confi
 | Environment         | API URL                                                  |
 |---------------------|-----------------------------------------------------------|
 | Development (local) | http://localhost:5171/api/dogs                            |
-| Production (Azure)  | https://YOUR-AZURE-API-NAME.azurewebsites.net/api/dogs    |
+| Production (Azure)  | https://hitta-hem-backend-ftcfgmgkbbctdkgb.swedencentral-01.azurewebsites.net/api/dogs |
 
 These URLs are defined in the following files:
 
@@ -128,3 +128,9 @@ src/
 ## 👩‍💻 Developer
 
 Frontend developed by **Mikaela Johansson**
+
+---
+
+## 📎 Related Repositories
+
+- 🔗 Backend (.net c#): [hittahem-backend](https://github.com/MikaelaJohansson/hitta-hem-backend.git)
