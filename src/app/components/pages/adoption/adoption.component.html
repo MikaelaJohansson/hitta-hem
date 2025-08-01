@@ -8,10 +8,11 @@
       <div class="dog-card p-3 shadow h-100">
         <a [routerLink]="['/adoption-details', dog.id]">
           <img 
-            [src]="dog.imageUrl.startsWith('data') ? dog.imageUrl : 'http://localhost:5171' + dog.imageUrl" 
+            [src]="dog.imageUrl.startsWith('data') ? dog.imageUrl : environment.apiUrl + dog.imageUrl" 
             alt="{{ dog.name }}" 
             class="img-fluid rounded-3 mb-3"
-          >
+          />
+
           <h2 class="fs-1 text-decoration-underline">{{ dog.name }}</h2>
           <p class="text-start mx-4">
             <strong>Ålder:</strong>&nbsp; {{ dog.age }} år<br>
