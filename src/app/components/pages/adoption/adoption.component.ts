@@ -7,7 +7,7 @@ import { environment } from '../../../../environments/environment';
 @Component({
   selector: 'app-adoption',
   standalone: true,
-  imports: [NgFor, RouterLink,NgIf],
+  imports: [NgFor, RouterLink, NgIf],
   templateUrl: './adoption.component.html',
   styleUrl: './adoption.component.scss'
 })
