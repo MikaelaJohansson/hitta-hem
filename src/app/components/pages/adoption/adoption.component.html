@@ -1,10 +1,10 @@
 <section class="container">
   <p class="text-center mt-4">
-    Antal hundar som söker nytt hem: {{ dogService.dogs().length }} själar
+    Antal hundar som söker nytt hem: {{ dogs().length }} själar
   </p>
 
-  <div class="row dogs-wrapper">
-    <div *ngFor="let dog of dogService.dogs()" class="col-md-4 p-3">
+  <div *ngIf="dogs().length > 0" class="row dogs-wrapper">
+    <div *ngFor="let dog of dogs()" class="col-md-4 p-3">
       <div class="dog-card p-3 shadow h-100">
         <a [routerLink]="['/adoption-details', dog.id]">
           <img 
@@ -19,12 +19,17 @@
             <strong>Kön: </strong>&nbsp;  {{ dog.sex }}<br>
             <strong>Ras:</strong>&nbsp;  {{ dog.breed }}
           </p>
-          <p class="adoption-card" ><strong>Läs mer om {{ dog.name }} →</strong></p>
+          <p class="adoption-card"><strong>Läs mer om {{ dog.name }} →</strong></p>
         </a>
       </div>
     </div>
   </div>
+
+  <p *ngIf="dogs().length === 0" class="text-center text-muted mt-5">
+    🐾 Laddar hundar som söker hem...
+  </p>
 </section>
+
 
 
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, computed } from '@angular/core';
 import { DogService } from '../../../services/dog.service';
 import { NgFor, NgIf } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -14,9 +14,12 @@ import { environment } from '../../../../environments/environment';
 export class AdoptionComponent {
   environment = environment;
 
+  dogs = computed(() => this.dogService.dogs());
+
   constructor(public dogService: DogService) {
     this.dogService.getDogsFromApi();
   }
 }
+
 
 
