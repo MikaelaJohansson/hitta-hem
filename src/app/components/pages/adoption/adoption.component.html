@@ -3,7 +3,7 @@
     Antal hundar som söker nytt hem: {{ dogService.dogs().length }} själar
   </p>
 
-  <div class="row dogs-wrapper" *ngIf="dogService.dogs().length > 0">
+  <div class="row dogs-wrapper">
     <div *ngFor="let dog of dogService.dogs()" class="col-md-4 p-3">
       <div class="dog-card p-3 shadow h-100">
         <a [routerLink]="['/adoption-details', dog.id]">
@@ -19,17 +19,12 @@
             <strong>Kön: </strong>&nbsp;  {{ dog.sex }}<br>
             <strong>Ras:</strong>&nbsp;  {{ dog.breed }}
           </p>
-          <p class="adoption-card"><strong>Läs mer om {{ dog.name }} →</strong></p>
+          <p class="adoption-card" ><strong>Läs mer om {{ dog.name }} →</strong></p>
         </a>
       </div>
     </div>
   </div>
-
-  <p *ngIf="dogService.dogs().length === 0" class="text-center text-muted mt-5">
-    🐾 Laddar hundar som söker hem...
-  </p>
 </section>
-
 
 
 
